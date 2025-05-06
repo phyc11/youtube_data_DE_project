@@ -54,3 +54,7 @@ After the environment is running, access the following services:
 | Jupyter Notebook  | [http://localhost:8888](http://localhost:8888) | token    | auto-generated |
 | HDFS Namenode UI  | [http://localhost:9870](http://localhost:9870) | N/A      | N/A      |
 
+> To get Jupyter token, run:
+```bash
+docker logs <jupyter_container_name>
+```
