@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+
+  <!-- Kết nối đến Hive Metastore -->
+  <property>
+    <name>hive.metastore.uris</name>
+    <value>thrift://hive-metastore:9083</value>
+    <description>URI cho Hive metastore</description>
+  </property>
+
+  <!-- Cấu hình kết nối PostgreSQL -->
+  <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:postgresql://hive-metastore-db:5432/metastore</value>
+    <description>URL kết nối JDBC metastore</description>
+  </property>
+
+  <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>org.postgresql.Driver</value>
+    <description>Driver PostgreSQL</description>
+  </property>
+
+  <property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>hive</value>
+    <description>Tên người dùng PostgreSQL</description>
+  </property>
+
+  <property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>hive</value>
+    <description>Mật khẩu PostgreSQL</description>
+  </property>
+
+  <!-- Sử dụng Spark làm công cụ thực thi -->
+  <property>
+    <name>hive.execution.engine</name>
+    <value>spark</value>
+    <description>Sử dụng Spark làm công cụ thực thi thay vì MapReduce</description>
+  </property>
+
+  <!-- Cấu hình Spark cho Hive -->
+  <property>
+    <name>spark.master</name>
+    <value>spark://spark-master:7077</value>
+    <description>URL của Spark master</description>
+  </property>
+
+  <property>
+    <name>spark.serializer</name>
+    <value>org.apache.spark.serializer.KryoSerializer</value>
+  </property>
+
+  <property>
+    <name>spark.executor.memory</name>
+    <value>1g</value>
+    <description>Bộ nhớ cho executor</description>
+  </property>
+  
+  <property>
+    <name>spark.driver.memory</name>
+    <value>1g</value>
+    <description>Bộ nhớ cho driver</description>
+  </property>
+
+  <!-- Cấu hình thư mục tạm và warehouse -->
+  <property>
+    <name>hive.exec.scratchdir</name>
+    <value>/tmp/hive</value>
+    <description>Thư mục tạm cho Hive</description>
+  </property>
+
+  <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>hdfs://namenode1:9000/youtube_DE_project/datawarehouse</value>
+    <description>Thư mục warehouse chứa dữ liệu Hive</description>
+  </property>
+
+  <!-- Cấu hình bảo mật -->
+  <property>
+    <name>hive.server2.enable.doAs</name>
+    <value>false</value>
+    <description>Tắt chạy truy vấn với vai trò người dùng (không cần trong môi trường Docker)</description>
+  </property>
+
+  <!-- Cho phép Hive tương tác với DB bên ngoài -->
+  <property>
+    <name>hive.exec.dynamic.partition</name>
+    <value>true</value>
+  </property>
+  
+  <property>
+    <name>hive.exec.dynamic.partition.mode</name>
+    <value>nonstrict</value>
+  </property>
+
+  <!-- Thiết lập tính năng mở rộng -->
+  <property>
+    <name>hive.vectorized.execution.enabled</name>
+    <value>true</value>
+    <description>Bật thực thi vector hóa cho hiệu suất tốt hơn</description>
+  </property>
+
+  <property>
+    <name>hive.exec.parallel</name>
+    <value>true</value>
+    <description>Bật thực thi song song</description>
+  </property>
+
+  <property>
+    <name>hive.cbo.enable</name>
+    <value>true</value>
+    <description>Bật tối ưu hóa dựa trên chi phí</description>
+  </property>
+
+  <!-- Cấu hình Datanucleus -->
+  <property>
+    <name>datanucleus.autoCreateSchema</name>
+    <value>false</value>
+  </property>
+  
+  <property>
+    <name>datanucleus.fixedDatastore</name>
+    <value>true</value>
+  </property>
+
+  <!-- Cấu hình log -->
+  <property>
+    <name>hive.server2.logging.operation.enabled</name>
+    <value>true</value>
+  </property>
+
+  <!-- Tắt strict mode -->
+  <property>
+    <name>hive.mapred.mode</name>
+    <value>nonstrict</value>
+  </property>
+  
+</configuration>
