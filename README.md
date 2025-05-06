@@ -59,9 +59,9 @@ After the environment is running, access the following services:
 docker logs <jupyter_container_name>
 ```
 
-## Querying Hive Tables
+### Querying Hive Tables
 
-### Using Hive via Beeline
+#### Using Hive via Beeline
 
 1. Enter the Hive server container:
    ```bash
