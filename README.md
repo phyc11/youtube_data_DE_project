@@ -32,23 +32,25 @@ YouTube API --> Extract --> HDFS (data lake) --> Transform --> Load --> Hive (da
 
 ## Project Initialization
 1. Clone this repository
-```text
+```
 git clone https://github.com/phyc11/youtube_data_DE_project.git
 ``` 
-```text
+```
 cd youtube_data_DE_project
 ``` 
-3. Use Docker Compose to build and run
+2. Use Docker Compose to build and run
 ```
 docker-compose build
 ```
 ```
 docker-compose up -d
 ```
-5. Accessing Services
-| Service          | URL                                            | Username      | Password          |
-| ---------------- | ---------------------------------------------- | ------------- | ----------------- |
-| Airflow UI       | [http://localhost:8080](http://localhost:8080) | `admin`       | `admin`           |
-| Jupyter Notebook | [http://localhost:8888](http://localhost:8888) | token tự sinh | xem log container |
-| HDFS Namenode UI | [http://localhost:9870](http://localhost:9870) | N/A           | N/A               |
+3. Accessing Services
+After the environment is running, access the following services:
+
+| Service           | URL                                 | Username | Password |
+|------------------|--------------------------------------|----------|----------|
+| Airflow UI        | [http://localhost:8080](http://localhost:8080) | `admin`  | `admin`  |
+| Jupyter Notebook  | [http://localhost:8888](http://localhost:8888) | token    | auto-generated |
+| HDFS Namenode UI  | [http://localhost:9870](http://localhost:9870) | N/A      | N/A      |
 
