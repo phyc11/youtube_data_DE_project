@@ -58,3 +58,17 @@ After the environment is running, access the following services:
 ```bash
 docker logs <jupyter_container_name>
 ```
+
+## Querying Hive Tables
+
+### Using Hive via Beeline
+
+1. Enter the Hive server container:
+   ```bash
+   docker exec -it hive-server /bin/bash
+   ```
+
+2. Connect using Beeline:
+   ```bash
+   beeline -u jdbc:hive2://localhost:10000 -n hive
+   ```
