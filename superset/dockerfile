@@ -1,0 +1,40 @@
+FROM apache/superset:latest
+
+USER root
+
+# Cài các gói hệ thống cần thiết
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    default-libmysqlclient-dev \
+    gcc \
+    g++ \
+    libsasl2-dev \
+    python3-dev \
+    build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Cài các gói Python cần thiết, thêm thrift_sasl để kết nối Hive
+RUN pip install \
+    mysqlclient \
+    psycopg2-binary \
+    thrift \
+    pyarrow \
+    pure-sasl \
+    thrift-sasl \
+    pyhive
+
+# Biến môi trường Superset admin
+ENV ADMIN_USERNAME $ADMIN_USERNAME
+ENV ADMIN_EMAIL $ADMIN_EMAIL
+ENV ADMIN_PASSWORD $ADMIN_PASSWORD
+
+# Script khởi tạo và cấu hình
+COPY ./superset-init.sh /superset-init.sh
+RUN chmod +x /superset-init.sh
+
+COPY superset_config.py /app/
+ENV SUPERSET_CONFIG_PATH /app/superset_config.py
+
+USER superset
+ENTRYPOINT ["/superset-init.sh"]

@@ -335,6 +335,21 @@ services:
     networks:
       - confluent
 
+  superset:
+    build: 
+      context: ./superset
+      dockerfile: dockerfile
+    image: apache/superset:latest  
+    container_name: superset
+    environment:
+      - ADMIN_USERNAME=admin
+      - ADMIN_EMAIL=xuanphuc11112004@gmail.com
+      - ADMIN_PASSWORD=admin
+    ports:
+      - '8088:8088'
+    networks:
+      - confluent    
+
 
   # elasticsearch:
   #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.14
