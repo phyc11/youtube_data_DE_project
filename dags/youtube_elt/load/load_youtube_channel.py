@@ -18,7 +18,8 @@ schema = StructType([
     StructField("country", StringType(), True),
     StructField("view_count", StringType(), True),
     StructField("subscriber_count", StringType(), True),
-    StructField("video_count", StringType(), True)
+    StructField("video_count", StringType(), True),
+    StructField("date", TimestampType(), True)
 ])
 
 

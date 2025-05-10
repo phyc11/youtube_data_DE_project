@@ -18,7 +18,8 @@ schema = StructType([
     StructField("published_at", TimestampType(), True),
     StructField("view_count", StringType(), True),
     StructField("like_count", StringType(), True),
-    StructField("comment_count", StringType(), True)
+    StructField("comment_count", StringType(), True),
+    StructField("date", TimestampType(), True)
 ])
 
 

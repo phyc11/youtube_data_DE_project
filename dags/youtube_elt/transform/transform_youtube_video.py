@@ -18,16 +18,16 @@ try:
     spark.sql("CREATE DATABASE IF NOT EXISTS youtube_project_analytics")
     spark.sql("USE youtube_project_analytics")
     
-    df = spark.read.parquet("hdfs://namenode1:9000/youtube_DE_project/datalake/youtube_video/raw/") \
-           .drop("year", "month", "day")
+    df = spark.read.parquet("hdfs://namenode1:9000/youtube_DE_project/datalake/youtube_video/raw/") 
 
     today = datetime.now()
+    year = today.year
+    month = today.month
+    day = today.day
 
-    df = df.withColumn("year", lit(today.year)) \
-           .withColumn("month", lit(today.month)) \
-           .withColumn("day", lit(today.day))
+    df = df.filter((df["year"] == year) & (df["month"] == month) & (df["day"] == day))
 
-    df.write.mode("overwrite") \
+    df.write.mode("append") \
       .partitionBy("year", "month", "day") \
       .format("parquet") \
       .option("path", "hdfs://namenode1:9000/youtube_DE_project/datawarehouse/youtube_project_analytics/video_data_analytics") \

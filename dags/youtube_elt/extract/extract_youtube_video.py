@@ -57,7 +57,8 @@ def extract_youtube_video_data():
                 "published_at": item["snippet"]["publishedAt"],
                 "view_count": item["statistics"].get("viewCount", 0),
                 "like_count": item["statistics"].get("likeCount", 0),
-                "comment_count": item["statistics"].get("commentCount", 0)
+                "comment_count": item["statistics"].get("commentCount", 0),
+                "date": datetime.utcnow().date().isoformat() 
             }
             all_video_data.append(video_data)
 

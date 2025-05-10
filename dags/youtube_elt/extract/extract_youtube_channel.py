@@ -25,6 +25,7 @@ def extract_youtube_channel_data():
             "view_count" : item["statistics"].get("viewCount", 0),
             "subscriber_count" : item["statistics"].get("subscriberCount", 0),
             "video_count" : item["statistics"].get("videoCount", 0),
+            "date": datetime.utcnow().date().isoformat() 
         }
 
     producer = KafkaProducer(bootstrap_servers = 'broker:29092', value_serializer = lambda v: json.dumps(v).encode('utf-8'))

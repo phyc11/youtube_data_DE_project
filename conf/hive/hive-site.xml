@@ -34,11 +34,11 @@
     <description>Mật khẩu PostgreSQL</description>
   </property>
 
-  <!-- Sử dụng Spark làm công cụ thực thi -->
+  <!-- Sử dụng MapReduce làm công cụ thực thi -->
   <property>
     <name>hive.execution.engine</name>
-    <value>spark</value>
-    <description>Sử dụng Spark làm công cụ thực thi thay vì MapReduce</description>
+    <value>mr</value>
+    <description>Sử dụng MapReduce làm công cụ thực thi</description>
   </property>
 
   <!-- Cấu hình Spark cho Hive -->
